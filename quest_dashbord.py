@@ -6,7 +6,8 @@ import plotly.express as px
 
 
 st.set_page_config(layout="wide")
-st.title('わんだーゲーム：集計ダッシュボード')
+st.title('Team C')
+st.header('インタラクティブダッシュボード')
 
 df_cate_names = pd.read_csv('./quest22_data/category_names.csv')
 # df_cate_names
