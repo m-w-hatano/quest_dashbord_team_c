@@ -40,10 +40,10 @@ df_sales1_2 = df_sales1_2.set_index(df_sales1_2["日付"])
 df_sales1_2['売上金額'] = df_sales1_2['商品価格'] * df_sales1_2['売上個数']
 #全データの確認用
 st.subheader('■全データ表示')
-# df_sales1_2
+df_sales1_2
 
 st.subheader('■カテゴリー別に集計 ※サークルの大きさは商品単価平均')
-# df_date_category
+df_date_category
 
 
 
