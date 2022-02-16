@@ -1,8 +1,10 @@
+from ast import Index
 import numpy as np
 import pandas as pd
 import streamlit as st
 import pydeck as pdk
 import plotly.express as px
+# import base64
 
 
 st.set_page_config(layout="wide")
@@ -31,6 +33,28 @@ df_sales1_2['売上金額'] = df_sales1_2['商品価格'] * df_sales1_2['売上�
 #全データの確認用
 df_sales1_2
 
+shukei_fig = df_sales1_2.resample('M').sum()
+shukei_fig
+
+#バブルチャート
+# fig = px.scatter(shukei_fig,
+#                 x='売上金額',
+#                 y='売上個数',
+#                 range_x=[1000,100000],
+#                 range_y=[0,150],
+#                 size="商品価格",
+# 	            size_max = 38,
+#                 color="商品カテゴリID",
+#                 animation_frame='M',
+#                 animation_group='商品カテゴリID')
+
+# st.plotly_chart(fig)
+
+# csv = df_sales1_2.to_csv(index=False) 
+# b64 = base64.b64encode(csv.encode()).decode()
+# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+
 
 #フィルタリング機能---------------------------
 shop_list = list(df_sales1_2['店舗ID'].unique())
@@ -55,13 +79,19 @@ shukei = df_sales1_2.resample(date_span).sum()
 
 title_name =  "売上合計　　店舗ID : " + str(select_shop) +  "      カテゴリー名 : " + str(select_category)
 st.header(title_name)
-df_value_line = shukei[['売上個数', '売上金額']]
+df_value_line = shukei['売上金額']
 st.line_chart(df_value_line)
 
 st.header("売上個数合計") 
 df_quant_line = shukei['売上個数']
 st.line_chart(df_quant_line)
 df_sales1_2
+
+#CSV出力機能
+# csv2 = df_sales1_2.to_csv(index=False) 
+# b64 = base64.b64encode(csv.encode()).decode()
+# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
 
 
 st.header("商品ID別売上推移") 
@@ -73,3 +103,5 @@ productID_Quant_line = productID_shukei['売上個数']
 st.line_chart(productID_Quant_line)
 df_product_sales 
 productID_shukei[['売上個数','売上金額']]
+
+
