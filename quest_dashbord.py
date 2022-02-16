@@ -55,7 +55,7 @@ shukei = df_sales1_2.resample(date_span).sum()
 
 title_name =  "売上合計　　店舗ID : " + str(select_shop) +  "      カテゴリー名 : " + str(select_category)
 st.header(title_name)
-df_value_line = shukei[['売上個数', '売上金額']]
+df_value_line = shukei['売上金額']
 st.line_chart(df_value_line)
 
 st.header("売上個数合計") 
