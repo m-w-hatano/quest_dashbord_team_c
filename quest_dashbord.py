@@ -72,7 +72,7 @@ df_date_category
 
 #フィルタリング機能---------------------------
 shop_list = list(df_sales1_2['店舗ID'].unique())
-select_shop = st.sidebar.multiselect("店舗IDでフィルタ",shop_list,2,6,7,10,11,12,13,15,16,17)
+select_shop = st.sidebar.multiselect("店舗IDでフィルタ",shop_list,[2,6,7,10,11,12,13,15,16,17])
 df_sales1_2 = df_sales1_2[(df_sales1_2['店舗ID'].isin(select_shop))]
 
 
