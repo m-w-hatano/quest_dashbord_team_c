@@ -48,21 +48,21 @@ df_date_category
 
 
 #バブルチャート
-st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
-fig = px.scatter(df_date_category,
-                x='総売上個数',
-                y='総売上金額',
-                range_x=[0,600],
-                range_y=[1000,500000],
-                size="単価平均",
-	            size_max = 50,
-                color="商品カテゴリ名",
-                animation_frame='日付',
-                animation_group='商品カテゴリ名',
-                width=800,
-                height=800)
-
-st.plotly_chart(fig)
+# st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
+# fig = px.scatter(df_date_category,
+#                 x='総売上個数',
+#                 y='総売上金額',
+#                 range_x=[0,600],
+#                 range_y=[1000,500000],
+#                 size="単価平均",
+# 	            size_max = 50,
+#                 color="商品カテゴリ名",
+#                 animation_frame='日付',
+#                 animation_group='商品カテゴリ名',
+#                 width=800,
+#                 height=800)
+#
+# st.plotly_chart(fig)
 
 # csv = df_sales1_2.to_csv(index=False) 
 # b64 = base64.b64encode(csv.encode()).decode()
