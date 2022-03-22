@@ -126,7 +126,7 @@ productID_shukei[['売上個数','売上金額']]
 st.subheader('■学習モデル作成')
 
 param1=st.sidebar.number_input('データ分割：',0,100,0)
-param2=st.sidebar.number_input('yearly_seasonality：',0,10,4000)
+# param2=st.sidebar.number_input('yearly_seasonality：',0,10,4000)
 what_lang_size1 = st.sidebar.selectbox(
     'weekly_seasonality',
      ('true','false'))
