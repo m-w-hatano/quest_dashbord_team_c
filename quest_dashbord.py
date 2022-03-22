@@ -39,35 +39,35 @@ df_sales1_2 = df_sales1_2.set_index(df_sales1_2["日付"])
 #売上金額をカラムに追加
 df_sales1_2['売上金額'] = df_sales1_2['商品価格'] * df_sales1_2['売上個数']
 #全データの確認用
-st.subheader('■全データ表示')
-df_sales1_2
+# st.subheader('■全データ表示')
+# df_sales1_2
 
-st.subheader('■カテゴリー別に集計 ※サークルの大きさは商品単価平均')
-df_date_category
+# st.subheader('■カテゴリー別に集計 ※サークルの大きさは商品単価平均')
+# df_date_category
 
 
 
 # バブルチャート
-st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
-fig = px.scatter(df_date_category,
-                x='総売上個数',
-                y='総売上金額',
-                range_x=[0,600],
-                range_y=[1000,500000],
-                size="単価平均",
-	            size_max = 50,
-                color="商品カテゴリ名",
-                animation_frame='日付',
-                animation_group='商品カテゴリ名',
-                width=800,
-                height=800)
+# st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
+# fig = px.scatter(df_date_category,
+#                 x='総売上個数',
+#                 y='総売上金額',
+#                 range_x=[0,600],
+#                 range_y=[1000,500000],
+#                 size="単価平均",
+# 	            size_max = 50,
+#                 color="商品カテゴリ名",
+#                 animation_frame='日付',
+#                 animation_group='商品カテゴリ名',
+#                 width=800,
+#                 height=800)
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
 
-csv = df_sales1_2.to_csv(index=False) 
-b64 = base64.b64encode(csv.encode()).decode()
-href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
-st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+# csv = df_sales1_2.to_csv(index=False) 
+# b64 = base64.b64encode(csv.encode()).decode()
+# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
 
 
 #フィルタリング機能---------------------------
@@ -102,10 +102,10 @@ st.line_chart(df_quant_line)
 df_sales1_2
 
 #CSV出力機能
-# csv2 = df_sales1_2.to_csv(index=False) 
-# b64 = base64.b64encode(csv.encode()).decode()
-# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
-# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+csv2 = df_sales1_2.to_csv(index=False) 
+b64 = base64.b64encode(csv.encode()).decode()
+href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
 
 
 st.header("商品ID別売上推移") 
@@ -117,5 +117,25 @@ productID_Quant_line = productID_shukei['売上個数']
 st.line_chart(productID_Quant_line)
 df_product_sales 
 productID_shukei[['売上個数','売上金額']]
+
+st.subheader('■学習モデル作成')
+
+param1=st.sidebar.number_input('データ分割：',0,100,0)
+param2=st.sidebar.number_input('yearly_seasonality：',0,10,4000)
+what_lang_size1 = st.sidebar.selectbox(
+    'weekly_seasonality',
+     ('true','false'))
+what_lang_size2 = st.sidebar.selectbox(
+    'daily_seasonality',
+     ('true','false'))
+what_lang_size3 = st.sidebar.selectbox(
+    'seasonality_mode',
+     ('multiplicative','Rust', 'go', 'C++'))
+
+
+
+st.button("実行")
+
+st.button("評価")
 
 
