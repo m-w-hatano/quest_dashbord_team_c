@@ -47,7 +47,7 @@ df_date_category
 
 
 
-バブルチャート
+# バブルチャート
 st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
 fig = px.scatter(df_date_category,
                 x='総売上個数',
