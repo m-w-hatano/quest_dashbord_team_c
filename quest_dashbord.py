@@ -4,13 +4,13 @@ import pandas as pd
 import streamlit as st
 import pydeck as pdk
 import plotly.express as px
-# import base64
+import base64
 
 
 st.set_page_config(layout="wide")
-st.title('Team C')
+st.title('わんだーゲーム本舗')
 st.header('インタラクティブダッシュボード')
-st.subheader('110万行計算するので表示に2～3分かかります(T*T)')
+# st.subheader('110万行計算するので表示に2～3分かかります(T*T)')
 
 df_cate_names = pd.read_csv('./quest22_data/category_names.csv')
 # df_cate_names
@@ -47,27 +47,27 @@ df_date_category
 
 
 
-#バブルチャート
-# st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
-# fig = px.scatter(df_date_category,
-#                 x='総売上個数',
-#                 y='総売上金額',
-#                 range_x=[0,600],
-#                 range_y=[1000,500000],
-#                 size="単価平均",
-# 	            size_max = 50,
-#                 color="商品カテゴリ名",
-#                 animation_frame='日付',
-#                 animation_group='商品カテゴリ名',
-#                 width=800,
-#                 height=800)
-#
-# st.plotly_chart(fig)
+バブルチャート
+st.subheader('■カテゴリー別バブルチャート ※サークルの大きさは商品単価平均')
+fig = px.scatter(df_date_category,
+                x='総売上個数',
+                y='総売上金額',
+                range_x=[0,600],
+                range_y=[1000,500000],
+                size="単価平均",
+	            size_max = 50,
+                color="商品カテゴリ名",
+                animation_frame='日付',
+                animation_group='商品カテゴリ名',
+                width=800,
+                height=800)
 
-# csv = df_sales1_2.to_csv(index=False) 
-# b64 = base64.b64encode(csv.encode()).decode()
-# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
-# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+st.plotly_chart(fig)
+
+csv = df_sales1_2.to_csv(index=False) 
+b64 = base64.b64encode(csv.encode()).decode()
+href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
 
 
 #フィルタリング機能---------------------------
