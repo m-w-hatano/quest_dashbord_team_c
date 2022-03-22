@@ -102,7 +102,12 @@ st.line_chart(df_quant_line)
 df_sales1_2
 
 #CSV出力機能
-csv2 = df_sales1_2.to_csv(index=False) 
+# csv2 = df_sales1_2.to_csv(index=False) 
+# b64 = base64.b64encode(csv.encode()).decode()
+# href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+# st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+
+csv = df_sales1_2.to_csv(index=False) 
 b64 = base64.b64encode(csv.encode()).decode()
 href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
 st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
