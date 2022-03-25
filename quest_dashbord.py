@@ -121,7 +121,17 @@ productID_shukei = df_product_sales.resample(date_span).sum()
 productID_Quant_line = productID_shukei['売上個数']
 st.line_chart(productID_Quant_line)
 df_product_sales 
+
+csv = df_sales1_2.to_csv(index=False) 
+b64 = base64.b64encode(csv.encode()).decode()
+href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
+
 productID_shukei[['売上個数','売上金額']]
+csv = df_sales1_2.to_csv(index=False) 
+b64 = base64.b64encode(csv.encode()).decode()
+href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+st.markdown(f"CSVファイルのダウンロード(utf-8):  {href}", unsafe_allow_html=True)
 
 st.subheader('■学習モデル作成')
 
